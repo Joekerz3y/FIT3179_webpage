@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "./tsunami.csv"
+  },
+  "width":"container",
+    "transform": [
+  {
+    "window": [{
+      "op": "rank",
+      "as": "rank"
+    }],
+    "sort": [{ "field": "Count", "order": "descending" }]
+  }, {
+    "filter": "datum.rank <= 100"
+  }
+],
+  "mark": "bar",
+  "encoding": {
+
+    
+    "x": {
+      "field": "Country",
+      "type": "nominal",
+      "title": "Country",
+      "sort": "-y"
+    },
+    "y": {
+      "aggregate": "count",
+      "field": "Dis No",
+      "title": "Count of Tsunamis"
+    },
+    "color": {
+      "type": "nominal",
+      "field": "country"
+      }
+    
+  }
+  
+}
